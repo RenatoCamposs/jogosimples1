@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sem título</title>
+<script>
+function janken(escolha){
+	var userChoice;
+	var computerChoice = Math.random();
+if(escolha == '1'){ userChoice = 'Papel';   }
+else if(escolha == '2'){ userChoice = 'Pedra';   }
+else if(escolha == '3'){ userChoice = 'Tesoura';   }
+
+// Escolha do Pc; 
+if (computerChoice < 0.34) {	computerChoice = "Pedra";	}
+else if(computerChoice > 0.35 && computerChoice < 0.67){	computerChoice = "Papel";	}
+else{	computerChoice = "Tesoura";	}
+// comparaçoes
+if(userChoice ==  computerChoice){document.getElementById('Resultado').innerHTML = " Você escolheu " + userChoice + " e seu adversário escolheu " + computerChoice + " Empatou! "; }
+else if(userChoice == "Pedra" && computerChoice == "Papel"){document.getElementById('Resultado').innerHTML = " Você escolheu " + userChoice + " e seu adversário escolheu " + computerChoice + " Você Perdeu! "; }
+else if(userChoice == "Pedra" && computerChoice == "Tesoura"){ document.getElementById('Resultado').innerHTML = " Você escolheu " + userChoice + " e seu adversário escolheu " + computerChoice +  " Você Ganhou! "; }
+else if(userChoice == "Papel" && computerChoice == "Pedra"){ document.getElementById('Resultado').innerHTML = " Você escolheu " + userChoice + " e seu adversário escolheu " + computerChoice +  " Você Ganhou! "; }
+else if(userChoice == "Papel" && computerChoice == "Tesoura"){ document.getElementById('Resultado').innerHTML = " Você escolheu " + userChoice + " e seu adversário escolheu " + computerChoice +  " Você Perdeu! "; }
+else if(userChoice == "Tesoura" && computerChoice == "Papel"){ document.getElementById('Resultado').innerHTML = " Você escolheu " + userChoice + " e seu adversário escolheu " + computerChoice +  " Você Ganhou !"; }
+else if(userChoice == "Tesoura" && computerChoice == "Pedra"){ document.getElementById('Resultado').innerHTML = " Você escolheu " + userChoice + " e seu adversário escolheu " + computerChoice +  " Você Perdeu! "; }
+
+}
+</script>
+<style>
+*{ padding: 0px; margin:0px; }
+body{background-color:#CCC;}
+#content{ background-color:#EEE;  margin: 0 auto; width:90%; height:500px;  padding:10px; margin-top:50px;  }
+img{ margin:15px; }
+#images{ margin-left:20%; clear:both; margin-top:80px; }
+#papeli{ float:left; border: solid #FFF 3px; border-radius:20px;  margin:10px; background-color:#FFF;}
+input{ margin:10px; }
+#tesourai{ float:left; border: solid #FFF 3px; border-radius:20px; margin:10px; background-color:#FFF;  }
+#pedrai{ float:left; border: solid #FFF 3px; border-radius:20px; margin:10px; background-color:#FFF; }
+#answer{ width:95%; height:60px; border: solid #FFF 3px; border-radius:20px; margin:20px; background-color:#FFF; }
+p{  font-family:Verdana; padding:20px; }
+</style>
+</head>
+
+<body>
+<div id="content">
+<div id="images">
+<div id="papeli"> 
+<img id="papel" src="img/papel.png" /> <br/>
+<input type="button" value="Papel" onClick="janken(1)"/>
+</div>
+
+
+<div id="pedrai">
+<img id="pedra" src="img/pedra.png" /> <br/>
+<input type="button" value="Pedra" onClick="janken(2)"/>
+</div>
+
+<div id="tesourai">
+<img id="tesoura" src="img/tesoura.png" /> <br/>
+<input type="button" value="Tesoura" onClick="janken(3)"/>
+</div>
+
+</div>
+<div id="answer">
+<p id="Resultado"> </p>
+</div>
+
+
+</div>
+</body>
+</html>

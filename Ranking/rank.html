@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Seu Primeiro Jogo - HTML5</title>
+		<style type="text/css">
+		*{ padding:0px; margin:0px;}
+		body{ background-color:#EEE; }
+		#gamebox{ height:667px; width:1000px; background-color:#000; margin-right:auto; margin-left:auto; }
+			canvas{border: 1px solid #FFF; background-color:#CCC; display:none; margin-right:auto; margin-left:auto; position:relative; top:30px;}
+			p{ font-family:Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", serif; }
+			#p_text{ clear:both; margin:15px; margin-left:30px;  }
+			#game{ width:800px; height:600px; background-color:#FFF;  margin-right:auto; margin-left:auto; border:none; border-radius:10px; position:relative; top:30px; }
+			fieldset{ width:300px; height:150px; background-color:rgba(228,12,16,1.00); border:none; border-radius:10px; margin-right:auto; margin-left:auto; position:relative; top:225px;}
+			#stoping{ display:block; float:right}
+			#start{ width:70px; height:50px; margin:5px; margin-left:20px; border:none; }
+			#best{ width:70px; height:50px; margin:5px; border:none;  }
+			#clean{width:70px; height:50px; margin:5px; border:none;}
+			#rank{ width:800px; height:600px; background-color:#CB090C;  display:none; margin-right:auto; margin-left:auto; position:relative; top:30px;}
+		</style>
+    </head>   
+    <body>		
+<div id="gamebox">
+
+		<div id="game">
+     
+     <fieldset>
+     <p id="p_text"> Nome : <input type="text" id="nome" placeholder="Nome" /> </p> <br/>
+     <input type="button" id="start" value="Iniciar" onClick="inicializar()" />
+     <input type="button" id="best" value="Melhores"  onClick="best()" /> 
+     <input type="button" value=" Limpar " id="clean" onClick="limpar()"/>
+     
+	</fieldset>
+        </div>
+        <canvas id="canvas" width="800" height="600">
+			Navegador não suporta HTML5
+		</canvas>
+        <div id="rank">
+        
+        </div>
+</div>
+		<script type="text/javascript">
+
+function limpar(){
+	localStorage.clear();
+}
+	function best(){
+	document.getElementById('rank').style.display = 'block';
+	document.getElementById('canvas').style.display = 'none';
+	for(var varloop = 1;varloop <= varcount;varloop++){
+		for(varloop2 = 0; varloop2 <= varcount;varloop2++){
+		if(localStorage.getItem("nome" + varloop) !== null && localStorage.getItem("pontos" + varloop) !== null){	
+		rank.innerHTML += " Name " + localStorage.getItem("nome" + varloop) + " Pontos " + localStorage.getItem("pontos" + varloop) + '<br/>';
+}
+																												}
+		}
+
+	}
+	function stopped(){
+			varcount += 1;
+localStorage.setItem("nome" + varcount,nome.value);
+localStorage.setItem("pontos" + varcount,pontosJogador);
+	}
+	
+			var barraAltura,
+			    barraLargura,
+				jogadorPosicaoX,
+				velocidadeJogador, 
+				bolaDiametro, 
+				bolaPosX, 
+				bolaPosY, 
+				velocidadeBola, 
+				pontosJogador, 
+				colisao;
+			var varcount = 0;
+			var varloop2 = 0;
+			function inicializar()
+			{
+				
+document.getElementById('canvas').style.display = 'block';
+document.getElementById('rank').style.display = 'none';
+game.style.display = 'none';
+
+
+				
+				barraAltura = 15;
+				barraLargura = 90;
+				
+				pontosJogador = 0;
+				jogadorPosicaoX = (canvas.width - barraLargura) / 2;
+				velocidadeJogador = 20;
+				
+				canvas = document.getElementById("canvas");
+				context = canvas.getContext("2d");				
+				
+                bolaDiametro = 10;
+                bolaPosX = canvas.width / 2;
+                bolaPosY = -10;
+				velocidadeBola = 10;
+				colisao = false;
+				
+				document.addEventListener('keydown', keyDown);
+				
+				setInterval(gameLoop, 30);
+			}
+			
+			
+			
+			function keyDown(e) 
+			{
+				if(e.keyCode == 37)
+				{
+					if(jogadorPosicaoX > 0)
+					{
+						jogadorPosicaoX -= velocidadeJogador;
+					}
+				}
+				
+				if(e.keyCode == 39)
+				{
+					if(jogadorPosicaoX < (canvas.width - barraLargura))
+					{
+						jogadorPosicaoX += velocidadeJogador;
+					}
+				}
+			}
+			
+			function gameLoop()
+			{
+				//Limpa Tela
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				
+				// Bola
+				context.beginPath();
+                context.arc(bolaPosX, bolaPosY, bolaDiametro, 0, Math.PI * 2, true);
+                context.fill();
+				
+				if(bolaPosY <= canvas.height)
+				{
+					bolaPosY += velocidadeBola;
+				}
+				else
+				{
+					bolaPosX = Math.random() * 600;
+					bolaPosY = -10;
+					colisao = false;
+				}
+				
+				// Checar Colisão
+				if((bolaPosX > jogadorPosicaoX && bolaPosX < jogadorPosicaoX + barraLargura) && bolaPosY >= canvas.height - barraAltura && colisao == false)
+				{
+					pontosJogador++;
+					colisao = true;
+					if(pontosJogador > 9 && pontosJogador < 20){
+						velocidadeBola = 12;
+						canvas.style.backgroundImage = 'url(fundo3.gif)';
+						}
+					if(pontosJogador > 19 && pontosJogador < 30){
+						velocidadeBola = 14;
+						
+						}
+					if(pontosJogador > 29 && pontosJogador < 40){
+						velocidadeBola = 16;
+						
+						}
+					if(pontosJogador > 39 && pontosJogador < 50){
+						velocidadeBola = 18;
+						}
+					
+				}
+				
+				// Escreve placar
+                context.font = "32pt Tahoma";
+				context.fillText(pontosJogador, canvas.width - 70, 50);
+				
+				// Jogador
+				context.fillRect(jogadorPosicaoX, canvas.height - barraAltura, barraLargura, barraAltura);
+				context.fillStyle = "rgba(255,255,255,1)";
+			}
+
+		</script>
+		
+	</body>
+</html>

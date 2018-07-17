@@ -1,0 +1,233 @@
+﻿<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>Urna</title>
+<script>
+
+	var peppa_n = 0;
+	var george_n = 0;
+	var papai_n = 0;
+	localStorage.setItem("peppa",0);
+	localStorage.setItem("george",0);
+	localStorage.setItem("papai",0);
+
+function hide(){
+document.getElementById('number2').style.display = 'none';
+	localStorage.setItem("peppa",0);
+	localStorage.setItem("george",0);
+	localStorage.setItem("papai",0);
+	peppa_n = 0;
+	george_n = 0;
+	papai_n = 0;
+}
+localStorage.setItem('numeroum',n);
+localStorage.setItem('numerodois',n2);
+
+function numero(n){
+document.getElementById('number').style.display = 'none';
+document.getElementById('number2').style.display = 'block';
+localStorage.setItem('numeroum',n);
+document.getElementById('div1').innerHTML = "<p>"+ n +"</p>";
+
+
+	}
+	 function numero2(n2){
+	 localStorage.setItem('numerodois',n2);
+	 document.getElementById('div2').innerHTML = "<p>"+ n2 +"</p>";
+	 	if(localStorage.getItem('numeroum') == '1' && localStorage.getItem('numerodois') == '3'){
+		document.getElementById('tela').innerHTML =  '<img src="img/peppa.jpg"/>';
+		} 
+		else if(localStorage.getItem('numeroum') == '4' && localStorage.getItem('numerodois') == '5'){
+		document.getElementById('tela').innerHTML =  '<img src="img/george.jpg"/>';
+		}else if(localStorage.getItem('numeroum') == '4' && localStorage.getItem('numerodois') == '0'){
+		document.getElementById('tela').innerHTML =  '<img src="img/papai_pig.jpg"/>';
+		}else if(localStorage.getItem('numeroum') == '6' && localStorage.getItem('numerodois') == '9'){
+		document.getElementById('tela').innerHTML =  '<img src="img/iska.png"/>';	
+			}
+		else if(localStorage.getItem('numeroum') == '1' && localStorage.getItem('numerodois') == '0'){
+		document.getElementById('tela').innerHTML =  '<img src="img/aline.png"/>';	
+			}
+		else if(localStorage.getItem('numeroum') == '2' && localStorage.getItem('numerodois') == '4'){
+			document.getElementById('tela').innerHTML =  '<img src="img/andre6.png"/>';
+			}
+		else if(localStorage.getItem('numeroum') == '6' && localStorage.getItem('numerodois') == '6'){
+			document.getElementById('tela').innerHTML =  '<img src="img/satan.png"/>';
+			}
+
+			else{
+				document.getElementById('tela').innerHTML =  '<img src="img/pco.png"/>';
+				}
+	 }
+function confirmar(){
+	document.getElementById('tela').innerHTML = '<img src="img/fim.png"/> ';
+	if(localStorage.getItem('numeroum') == '1' && localStorage.getItem('numerodois') == '3'){
+	peppa_n = peppa_n + 1;
+	localStorage.setItem("peppa",peppa_n);
+	document.getElementById('result_peppa').innerHTML = " Votos da Peppa " + localStorage.getItem("peppa") ;
+	document.getElementById('result_george').innerHTML = " Votos do George " + localStorage.getItem("george");
+	document.getElementById('result_papai').innerHTML = " Votos do Papai Pig " + localStorage.getItem("papai");
+		} 
+	else if(localStorage.getItem('numeroum') == '4' && localStorage.getItem('numerodois') == '5'){
+	george_n = george_n + 1;
+	localStorage.setItem("george",george_n);
+	document.getElementById('result_peppa').innerHTML = " Votos da Peppa " + localStorage.getItem("peppa") ;
+	document.getElementById('result_george').innerHTML = " Votos do George " + localStorage.getItem("george");
+	document.getElementById('result_papai').innerHTML = " Votos do Papai Pig " + localStorage.getItem("papai");
+			} 
+		else if(localStorage.getItem('numeroum') == '4' && localStorage.getItem('numerodois') == '0'){
+			papai_n = papai_n + 1;
+	localStorage.setItem("papai",papai_n);
+	document.getElementById('result_peppa').innerHTML = " Votos da Peppa " + localStorage.getItem("peppa") ;
+	document.getElementById('result_george').innerHTML = " Votos do George " + localStorage.getItem("george");
+	document.getElementById('result_papai').innerHTML = " Votos do Papai Pig " + localStorage.getItem("papai");
+		}
+
+	}
+function cancel(){
+	document.getElementById('tela').innerHTML = '<div id="div1"></div><div id="div2"></div>' ;
+	document.getElementById('number').style.display = 'block';
+document.getElementById('number2').style.display = 'none';
+	}
+function reset_voto(){
+	localStorage.setItem("peppa",0);
+	localStorage.setItem("george",0);
+	localStorage.setItem("papai",0);
+	peppa_n = 0;
+	george_n = 0;
+	papai_n = 0;
+	document.getElementById('result_peppa').innerHTML = " Votos da Peppa " ;
+	document.getElementById('result_george').innerHTML = " Votos do George " ;
+	document.getElementById('result_papai').innerHTML = " Votos do Papai Pig " ;
+	}
+function voteagain(){
+	document.getElementById('number2').style.display = 'none';
+	document.getElementById('number').style.display = 'block';
+	document.getElementById('tela').innerHTML = '<div id="div1"></div><div id="div2"></div>' ;
+	}
+function branco(){
+	document.getElementById('tela').innerHTML = ' <img src="img/renato.png"/> ';
+	}
+
+</script>
+<style>
+*{margin: 0;}
+body{background-image: url(img/wall.jpg);background-position: center center;}
+#candidatos{margin:0 auto; width:900px; height:800px; margin-top:60px; padding:10px; background-color:#FFF; border-radius:10px;   }
+img{ width:350px; height:350px;} 
+#tela{ width:350px; height:350px; background-color:#FFF; margin:30px; float:left; border:solid 1px #000; }
+#vote{margin:0 auto; width:800px; background-color:rgba(000,000,000,0.43); margin-top:20px; padding:20px;}
+#candidatos ul { list-style-type:none;}
+#vote h1{ text-align:center; color:#FFF; }
+#candidatos ul li { display:inline-block; padding:20px; }
+#Resultado{ background-color:#FFF; width:900px; height:150px; margin:0 auto;    }
+#Resultado p{ padding:10px; color:#000; font-size:20px;	}
+input#button{ border-radius:10px; width:100px; height:50px; background-color:#000; color:#FFF;  }
+input#cancelar{ background-color:#F90;  border-radius:10px; width:100px; height:50px; }
+input#branco{ background-color:#FFF;  border-radius:10px; width:100px; height:50px; }
+input#confirmar{ background-color:#0F0;  border-radius:10px; width:100px; height:50px; }
+#number{ margin:30px; padding:10px;   } 
+#number2{ margin:30px; padding:10px;  }
+#div1{ width:100px; height:100px; background-color:#FFF; float:left; margin-left:50px; margin-top:110px; border:solid 1px #000;  }
+#div1 p{ font-size:72px; padding-left:30px; padding-top:10px; }
+#div2{ width:100px; height:100px; background-color:#FFF; float:left; margin-left:40px; margin-top:110px; border:solid 1px #000;  }
+#div2  p{ font-size:72px; padding-left:30px; padding-top:10px; }
+
+</style>
+</head>
+
+<body onLoad="hide()">
+<div id="vote">
+<h1> Vai votar em quem seu dinossauro? </h1>
+
+</div>
+<div id="candidatos">
+
+<div id="tela">
+
+<div id="div1">
+</div>
+<div id="div2">
+
+</div>
+
+</div>   
+
+<div id="number">
+  <ul>
+      <li>
+      		<input type="button" id="button"  value="1" onClick="numero('1')"/>
+      		<input type="button" id="button"  value="2" onClick="numero('2')"/>
+      		<input type="button" id="button"  value="3" onClick="numero('3')"/>
+     </li>
+     
+     <li>
+      		<input type="button" id="button"  value="4" onClick="numero('4')"/>
+      		<input type="button" id="button"  value="5" onClick="numero('5')"/>
+      		<input type="button" id="button"  value="6" onClick="numero('6')"/>
+     </li>
+     
+     <li>
+      		<input type="button" id="button"  value="7" onClick="numero('7')"/>
+      		<input type="button" id="button"  value="8" onClick="numero('8')"/>
+      		<input type="button" id="button"  value="9" onClick="numero('9')"/>
+     </li>
+      		<li>
+            <input type="button" id="button"  value="Resetar Votos" onClick="reset_voto()"/>  
+            <input type="button" id="button"  value="0" onClick="numero('0')"/>
+            <input type="button" id="button"  value="Vote outra vez" onClick="voteagain()"/> </li>
+          <li>
+      		
+      		<input type="button" id="branco"  value="Branco" onClick="branco()"/>
+            <input type="button" id="cancelar"  value="Corrige" onClick="cancel()"/>
+      		<input type="button" id="confirmar"  value="Confirmar" onClick="confirmar()"/>
+     </li>
+
+  </ul>
+  
+</div>
+<div id="number2">
+  <ul>
+      <li>
+      		<input type="button" id="button"  value="1" onClick="numero2('1')"/>
+      		<input type="button" id="button"  value="2" onClick="numero2('2')"/>
+      		<input type="button" id="button"  value="3" onClick="numero2('3')"/>
+     </li>
+     
+     <li>
+      		<input type="button" id="button"  value="4" onClick="numero2('4')"/>
+      		<input type="button" id="button"  value="5" onClick="numero2('5')"/>
+      		<input type="button" id="button"  value="6" onClick="numero2('6')"/>
+     </li>
+     
+     <li>
+      		<input type="button" id="button"  value="7" onClick="numero2('7')"/>
+      		<input type="button" id="button"  value="8" onClick="numero2('8')"/>
+      		<input type="button" id="button"  value="9" onClick="numero2('9')"/>
+     </li>
+     <li>
+     <input type="button" id="button"  value="Resetar Votos" onClick="reset_voto()"/> 
+     <input type="button" id="button"  value="0" onClick="numero2('0')"/>
+     <input type="button" id="button"  value="Vote outra vez" onClick="voteagain()"/>  </li>
+          <li>
+      		<input type="button" id="branco"  value="Branco" onClick="branco()"/>
+            <input type="button" id="cancelar"  value="Corrige" onClick="cancel()"/>
+      		<input type="button" id="confirmar"  value="Confirmar" onClick="confirmar()"/>
+     </li>
+
+  </ul>
+  
+</div>
+
+<div id="Resultado">
+
+ <p id="result_peppa"> Votos da Peppa </p>
+ <p id="result_george"> Votos do George </p>
+ <p id="result_papai"> Votos do Papai Pig </p>
+<input type="button"  value="Resetar" onClick="reset_voto()"/>
+</div>
+</div>
+
+
+
+</body>
+</html>
