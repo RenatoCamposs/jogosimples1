@@ -1,1 +1,1 @@
-# jogosimples1
+Jogo simples de adivinhação em PHP.
